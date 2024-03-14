@@ -1,0 +1,38 @@
+@model List<Livro>
+
+<h2>Lista de Livros Disponíveis</h2>
+
+@if (Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Gênero</th>
+                <th>ISBN</th>
+                <th>Identificador</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var livro in Model)
+            {
+                <tr>
+                    <td>@livro.Titulo</td>
+                    <td>@livro.Autor</td>
+                    <td>@livro.Genero</td>
+                    <td>@livro.ISBN</td>
+                    <td>
+                        <a asp-action="Detalhes" asp-route-isbn="@livro.ISBN">Detalhes</a> |
+                        <a asp-action="Emprestimo" asp-route-livroId="@livro.Identificador">Emprestar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há livros disponíveis.</p>
+}
